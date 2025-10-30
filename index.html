@@ -1075,7 +1075,100 @@
       min-width: 50px;
       text-align: right;
     }
+/* Draw Actions Buttons - Gothic Style */
+    .draw-actions {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
 
+    .draw-actions button {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      padding: 1rem 1.5rem;
+      border: 2px solid var(--border-color);
+      background: linear-gradient(135deg, rgba(26, 26, 46, 0.9), rgba(15, 15, 30, 0.95));
+      color: var(--text-accent);
+      cursor: pointer;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      text-transform: uppercase;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    }
+
+    .draw-actions button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(100, 149, 237, 0.3), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .draw-actions button:hover::before {
+      left: 100%;
+    }
+
+    .draw-actions button:hover {
+      border-color: var(--accent-blue);
+      box-shadow: 0 0 25px var(--shadow-blue), inset 0 0 20px rgba(100, 149, 237, 0.2);
+      transform: translateY(-2px);
+      color: var(--accent-blue);
+    }
+
+    .draw-actions button:active {
+      transform: translateY(0);
+      box-shadow: 0 0 15px var(--shadow-blue), inset 0 0 10px rgba(100, 149, 237, 0.3);
+    }
+
+    /* Undo Button - Blue accent */
+    .draw-actions button#undoButton,
+    .draw-actions .action-btn {
+      border-left: 3px solid rgba(100, 149, 237, 0.4);
+    }
+
+    /* Clear Button - Red warning accent */
+    .draw-actions button#clearCanvas,
+    .draw-actions .clear-btn {
+      border-left: 3px solid rgba(220, 20, 60, 0.4);
+      border-right: 3px solid rgba(220, 20, 60, 0.4);
+    }
+
+    .draw-actions button#clearCanvas:hover,
+    .draw-actions .clear-btn:hover {
+      border-color: crimson;
+      color: crimson;
+      box-shadow: 0 0 25px rgba(220, 20, 60, 0.5), inset 0 0 20px rgba(220, 20, 60, 0.2);
+    }
+
+    .draw-actions button#clearCanvas::before,
+    .draw-actions .clear-btn::before {
+      background: linear-gradient(90deg, transparent, rgba(220, 20, 60, 0.3), transparent);
+    }
+
+    /* Submit Button - Enhanced blue */
+    .draw-actions button#submitDrawing,
+    .draw-actions .submit-draw-btn {
+      border-right: 3px solid rgba(100, 149, 237, 0.5);
+      background: linear-gradient(135deg, rgba(26, 26, 46, 0.95), rgba(100, 149, 237, 0.15));
+    }
+
+    .draw-actions button#submitDrawing:hover,
+    .draw-actions .submit-draw-btn:hover {
+      background: linear-gradient(135deg, rgba(100, 149, 237, 0.2), rgba(26, 26, 46, 0.95));
+      box-shadow: 0 0 30px var(--shadow-blue), inset 0 0 25px rgba(100, 149, 237, 0.3);
+    }
+
+    /* Icon spacing in buttons */
+    .draw-actions button i {
+      margin-right: 0.5rem;
+    }
     @media (max-width: 768px) {
       .container {
         border-left: none;
