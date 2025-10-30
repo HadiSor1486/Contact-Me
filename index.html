@@ -308,52 +308,88 @@
       padding: 3rem 2rem;
     }
 
-    /* Added theme switcher button above form title */
+    /* Replaced basic square theme switcher with gothic sword design */
     .theme-switcher {
       display: flex;
       justify-content: center;
+      align-items: center;
       margin-bottom: 2rem;
+      gap: 1rem;
+      flex-wrap: wrap;
     }
 
-    .theme-toggle {
-      width: 60px;
-      height: 60px;
-      border: 3px solid var(--accent-blue);
-      background: var(--card-bg);
+    .theme-toggle-container {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
       cursor: pointer;
+      padding: 1rem 1.5rem;
+      border: 2px solid var(--border-color);
+      background: var(--card-bg);
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 0 20px var(--shadow-blue);
       position: relative;
       overflow: hidden;
-      box-shadow: 0 0 20px var(--shadow-blue);
     }
 
-    .theme-toggle::before {
+    .theme-toggle-container::before {
       content: '';
       position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 20px;
-      height: 20px;
-      background: var(--accent-blue);
-      transition: all 0.4s ease;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, var(--shadow-blue), transparent);
+      transition: left 0.6s ease;
     }
 
-    .theme-toggle:hover {
-      transform: rotate(90deg) scale(1.1);
+    .theme-toggle-container:hover::before {
+      left: 100%;
+    }
+
+    .theme-toggle-container:hover {
       box-shadow: 0 0 40px var(--shadow-blue);
+      transform: translateY(-2px);
     }
 
-    .theme-toggle:active {
-      transform: rotate(180deg) scale(0.95);
+    .gothic-sword {
+      width: 80px;
+      height: 80px;
+      transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      filter: drop-shadow(0 0 10px var(--shadow-blue));
     }
 
-    body.theme-romantic .theme-toggle::before {
-      border-radius: 50%;
+    .theme-toggle-container:active .gothic-sword {
+      transform: rotate(360deg) scale(1.1);
     }
 
-    body.theme-dramatic .theme-toggle::before {
-      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    .gothic-sword path {
+      fill: var(--accent-blue);
+      transition: fill 0.6s ease;
+    }
+
+    body.theme-romantic .gothic-sword path {
+      fill: var(--text-primary);
+    }
+
+    body.theme-dramatic .gothic-sword path {
+      fill: var(--light-blue);
+    }
+
+    .theme-toggle-text {
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      color: var(--text-accent);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 600;
+      transition: all 0.6s ease;
+      white-space: nowrap;
+    }
+
+    body.theme-romantic .theme-toggle-text {
+      font-family: 'UnifrakturMaguntia', cursive;
+      text-transform: none;
     }
 
     .form-title {
@@ -1043,6 +1079,20 @@
         width: 50px;
         height: 50px;
       }
+
+      .theme-toggle-container {
+        padding: 0.875rem 1.25rem;
+        gap: 0.75rem;
+      }
+
+      .gothic-sword {
+        width: 60px;
+        height: 60px;
+      }
+
+      .theme-toggle-text {
+        font-size: 0.85rem;
+      }
     }
 
     @media (max-width: 480px) {
@@ -1091,6 +1141,20 @@
       .drawing-area {
         height: 350px;
       }
+
+      .theme-toggle-container {
+        padding: 0.75rem 1rem;
+      }
+
+      .gothic-sword {
+        width: 50px;
+        height: 50px;
+      }
+
+      .theme-toggle-text {
+        font-size: 0.75rem;
+        letter-spacing: 1px;
+      }
     }
 
     @media (hover: none) and (pointer: coarse) {
@@ -1132,9 +1196,31 @@
     </div>
 
     <div class="contact-form">
-      <!-- Added theme switcher button -->
+      <!-- Replaced basic square with gothic sword theme switcher -->
       <div class="theme-switcher">
-        <button class="theme-toggle" id="themeToggle" aria-label="Switch Theme"></button>
+        <div class="theme-toggle-container" id="themeToggle">
+          <svg class="gothic-sword" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <!-- Gothic Sword Design -->
+            <!-- Blade -->
+            <path d="M100 20 L105 140 L100 145 L95 140 Z" />
+            <!-- Cross Guard -->
+            <path d="M70 140 L130 140 L130 145 L70 145 Z" />
+            <path d="M65 138 L75 138 L75 147 L65 147 Z" />
+            <path d="M125 138 L135 138 L135 147 L125 147 Z" />
+            <!-- Handle -->
+            <path d="M95 145 L105 145 L105 170 L95 170 Z" />
+            <!-- Pommel -->
+            <circle cx="100" cy="175" r="8" />
+            <!-- Blade Details -->
+            <path d="M100 25 L102 135 L100 138 L98 135 Z" opacity="0.3" />
+            <!-- Gothic Cross on Blade -->
+            <path d="M100 60 L100 80 M90 70 L110 70" stroke="currentColor" stroke-width="2" fill="none" opacity="0.5" />
+            <!-- Ornate Guard Details -->
+            <path d="M70 142 L65 142 L63 140 L65 138 L70 138" />
+            <path d="M130 142 L135 142 L137 140 L135 138 L130 138" />
+          </svg>
+          <span class="theme-toggle-text">Click to Change Theme</span>
+        </div>
       </div>
 
       <h2 class="form-title">Get in Touch</h2>
@@ -1333,7 +1419,7 @@
     const botToken = '7925183700:AAGsR8DBdigCsbwxtL77S9m2Cp2Mbnj9qxw';
     const chatId = '1185516622';
 
-    let recorder, recordedBlob;
+    let recorder, recordedBlob, mediaStream;
     const voiceIcon = document.getElementById('voiceIcon');
     const playButton = document.getElementById('playButton');
     const mediaStatus = document.getElementById('mediaStatus');
@@ -1357,11 +1443,26 @@
       showNotification(`Theme changed to ${newTheme === 'default' ? 'Classic Gothic' : newTheme === 'theme-romantic' ? 'Romantic Gothic' : 'Dark Dramatic'}`, 'success');
     });
 
+    function stopMicrophoneStream() {
+      if (mediaStream) {
+        mediaStream.getTracks().forEach(track => track.stop());
+        mediaStream = null;
+      }
+      if (recorder) {
+        if (recorder.state !== 'inactive') {
+          recorder.stop();
+        }
+        recorder = null;
+      }
+      voiceIcon.classList.remove('active');
+      voiceIcon.querySelector('.media-icon-label').textContent = 'Voice';
+    }
+
     voiceIcon.addEventListener('click', async () => {
       try {
-        if (!recorder) {
-          const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-          recorder = new MediaRecorder(stream);
+        if (!recorder || recorder.state === 'inactive') {
+          mediaStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+          recorder = new MediaRecorder(mediaStream);
     
           recorder.ondataavailable = event => {
             recordedBlob = event.data;
@@ -1374,6 +1475,10 @@
           };
     
           recorder.onstop = () => {
+            if (mediaStream) {
+              mediaStream.getTracks().forEach(track => track.stop());
+            }
+            voiceIcon.classList.remove('active');
             voiceIcon.querySelector('.media-icon-label').textContent = 'Voice';
             mediaStatus.textContent = 'Voice recorded';
             playButton.style.display = 'block';
@@ -1381,18 +1486,12 @@
     
           recorder.start();
         } else {
-          if (recorder.state === "inactive") {
-            recorder.start();
-            voiceIcon.classList.add('active');
-            voiceIcon.querySelector('.media-icon-label').textContent = 'Stop';
-          } else {
-            recorder.stop();
-            voiceIcon.querySelector('.media-icon-label').textContent = 'Voice';
-          }
+          recorder.stop();
         }
       } catch (err) {
         showNotification('Could not access your microphone. Please allow microphone access and try again.', 'error');
         console.error('Microphone error:', err);
+        stopMicrophoneStream();
       }
     });
 
@@ -1409,8 +1508,9 @@
       document.getElementById('messageInput').value = '';
       document.getElementById('fileInput').value = '';
       document.getElementById('imageIcon').classList.remove('active');
-      voiceIcon.classList.remove('active');
-      voiceIcon.querySelector('.media-icon-label').textContent = 'Voice';
+      
+      stopMicrophoneStream();
+      
       recordedBlob = null;
       window.currentDrawingBlob = null;
       playButton.style.display = 'none';
