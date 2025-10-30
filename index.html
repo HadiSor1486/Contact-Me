@@ -7,8 +7,9 @@
   <meta name="mobile-web-app-capable" content="yes">
   <title>Contact Sor - Gothic Edition</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;600&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
   <style>
+    /* Added three theme configurations */
     :root {
       --primary-blue: #1e3a8a;
       --accent-blue: #3b82f6;
@@ -21,6 +22,42 @@
       --text-accent: #60a5fa;
       --shadow-blue: rgba(59, 130, 246, 0.3);
       --shadow-dark: rgba(0, 0, 0, 0.8);
+      --bg-image: none;
+      --bg-overlay: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%);
+    }
+
+    /* Theme 2: Romantic Gothic (Angels & Ornate) */
+    body.theme-romantic {
+      --primary-blue: #2c2c2c;
+      --accent-blue: #1a1a1a;
+      --light-blue: #4a4a4a;
+      --dark-bg: #f5f5f0;
+      --card-bg: rgba(255, 255, 255, 0.85);
+      --border-color: #2c2c2c;
+      --text-primary: #1a1a1a;
+      --text-secondary: #4a4a4a;
+      --text-accent: #2c2c2c;
+      --shadow-blue: rgba(0, 0, 0, 0.2);
+      --shadow-dark: rgba(0, 0, 0, 0.3);
+      --bg-image: url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/17617883820267851356699419588998-h6bI0odVYTYu3LrG62uU3e2znRun07.jpg');
+      --bg-overlay: rgba(255, 255, 255, 0.3);
+    }
+
+    /* Theme 3: Dark Dramatic (Stormy) */
+    body.theme-dramatic {
+      --primary-blue: #374151;
+      --accent-blue: #6b7280;
+      --light-blue: #9ca3af;
+      --dark-bg: #111827;
+      --card-bg: rgba(17, 24, 39, 0.9);
+      --border-color: #4b5563;
+      --text-primary: #d1d5db;
+      --text-secondary: #9ca3af;
+      --text-accent: #e5e7eb;
+      --shadow-blue: rgba(107, 114, 128, 0.4);
+      --shadow-dark: rgba(0, 0, 0, 0.9);
+      --bg-image: url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1761788399282768821533657700681-8ceXDFTMFydQqEq2CpJ8Y9xv5cusH5.jpg');
+      --bg-overlay: rgba(0, 0, 0, 0.5);
     }
 
     * {
@@ -31,7 +68,7 @@
     }
 
     body {
-      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%);
+      background: var(--bg-overlay);
       color: var(--text-primary);
       font-family: 'Cormorant Garamond', serif;
       display: flex;
@@ -41,8 +78,10 @@
       padding: 0;
       position: relative;
       overflow-x: hidden;
+      transition: all 0.6s ease;
     }
 
+    /* Added background image support with overlay */
     body::before {
       content: '';
       position: fixed;
@@ -50,11 +89,29 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: 
-        radial-gradient(circle at 20% 50%, rgba(30, 58, 138, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+      background-image: var(--bg-image);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
       pointer-events: none;
       z-index: 0;
+      opacity: 1;
+      transition: opacity 0.6s ease;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(circle at 20% 50%, var(--shadow-blue) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, var(--shadow-blue) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+      transition: all 0.6s ease;
     }
 
     .container {
@@ -66,17 +123,29 @@
       border-right: 2px solid var(--border-color);
       box-shadow: 
         0 0 60px var(--shadow-blue),
-        inset 0 0 100px rgba(0, 0, 0, 0.5);
+        inset 0 0 100px var(--shadow-dark);
       position: relative;
       z-index: 1;
+      transition: all 0.6s ease;
     }
 
+    /* Enhanced ornaments with theme-specific styling */
     .ornament {
       position: absolute;
       color: var(--border-color);
       opacity: 0.3;
       font-size: 3rem;
       pointer-events: none;
+      transition: all 0.6s ease;
+    }
+
+    body.theme-romantic .ornament {
+      opacity: 0.6;
+      font-family: 'UnifrakturMaguntia', cursive;
+    }
+
+    body.theme-dramatic .ornament {
+      opacity: 0.2;
     }
 
     .ornament.top-left {
@@ -106,7 +175,8 @@
       gap: 2rem;
       border-bottom: 2px solid var(--border-color);
       position: relative;
-      background: linear-gradient(180deg, rgba(30, 58, 138, 0.1) 0%, transparent 100%);
+      background: linear-gradient(180deg, var(--shadow-blue) 0%, transparent 100%);
+      transition: all 0.6s ease;
     }
 
     .header::after {
@@ -119,6 +189,15 @@
       color: var(--accent-blue);
       padding: 0 1rem;
       font-size: 1.2rem;
+      transition: all 0.6s ease;
+    }
+
+    body.theme-romantic .header::after {
+      content: '✦';
+    }
+
+    body.theme-dramatic .header::after {
+      content: '✠';
     }
 
     .profile-img {
@@ -129,7 +208,7 @@
       border: 3px solid var(--accent-blue);
       box-shadow: 
         0 0 30px var(--shadow-blue),
-        inset 0 0 20px rgba(0, 0, 0, 0.5);
+        inset 0 0 20px var(--shadow-dark);
       transition: all 0.3s ease;
     }
 
@@ -137,7 +216,7 @@
       transform: scale(1.05);
       box-shadow: 
         0 0 50px var(--shadow-blue),
-        inset 0 0 20px rgba(0, 0, 0, 0.5);
+        inset 0 0 20px var(--shadow-dark);
     }
 
     .header-content {
@@ -155,6 +234,13 @@
       margin-bottom: 0.5rem;
       letter-spacing: 2px;
       text-shadow: 0 0 30px var(--shadow-blue);
+      transition: all 0.6s ease;
+    }
+
+    body.theme-romantic .name {
+      font-family: 'UnifrakturMaguntia', cursive;
+      color: var(--text-primary);
+      -webkit-text-fill-color: var(--text-primary);
     }
 
     .clock-display {
@@ -165,11 +251,13 @@
       gap: 0.5rem;
       font-family: 'Cormorant Garamond', serif;
       letter-spacing: 1px;
+      transition: all 0.6s ease;
     }
 
     .clock-display i {
       color: var(--accent-blue);
       filter: drop-shadow(0 0 10px var(--shadow-blue));
+      transition: all 0.6s ease;
     }
 
     .voice-btn {
@@ -212,8 +300,60 @@
       box-shadow: 0 0 20px var(--shadow-blue);
     }
 
+    body.theme-romantic .voice-btn:hover {
+      color: var(--card-bg);
+    }
+
     .contact-form {
       padding: 3rem 2rem;
+    }
+
+    /* Added theme switcher button above form title */
+    .theme-switcher {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    .theme-toggle {
+      width: 60px;
+      height: 60px;
+      border: 3px solid var(--accent-blue);
+      background: var(--card-bg);
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 0 20px var(--shadow-blue);
+    }
+
+    .theme-toggle::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 20px;
+      height: 20px;
+      background: var(--accent-blue);
+      transition: all 0.4s ease;
+    }
+
+    .theme-toggle:hover {
+      transform: rotate(90deg) scale(1.1);
+      box-shadow: 0 0 40px var(--shadow-blue);
+    }
+
+    .theme-toggle:active {
+      transform: rotate(180deg) scale(0.95);
+    }
+
+    body.theme-romantic .theme-toggle::before {
+      border-radius: 50%;
+    }
+
+    body.theme-dramatic .theme-toggle::before {
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
     }
 
     .form-title {
@@ -227,6 +367,12 @@
       text-transform: uppercase;
       position: relative;
       padding-bottom: 1rem;
+      transition: all 0.6s ease;
+    }
+
+    body.theme-romantic .form-title {
+      font-family: 'UnifrakturMaguntia', cursive;
+      text-transform: none;
     }
 
     .form-title::after {
@@ -238,6 +384,7 @@
       width: 100px;
       height: 2px;
       background: linear-gradient(90deg, transparent, var(--accent-blue), transparent);
+      transition: all 0.6s ease;
     }
 
     .input-group {
@@ -252,6 +399,7 @@
       color: var(--text-accent);
       font-family: 'Cinzel', serif;
       letter-spacing: 1px;
+      transition: all 0.6s ease;
     }
 
     .input-group input,
@@ -267,6 +415,16 @@
       transition: all 0.3s ease;
     }
 
+    body.theme-romantic .input-group input,
+    body.theme-romantic .input-group textarea {
+      background: rgba(255, 255, 255, 0.6);
+    }
+
+    body.theme-dramatic .input-group input,
+    body.theme-dramatic .input-group textarea {
+      background: rgba(17, 24, 39, 0.6);
+    }
+
     .input-group input:focus,
     .input-group textarea:focus {
       outline: none;
@@ -275,12 +433,16 @@
       box-shadow: 0 0 20px var(--shadow-blue);
     }
 
+    body.theme-romantic .input-group input:focus,
+    body.theme-romantic .input-group textarea:focus {
+      background: rgba(255, 255, 255, 0.8);
+    }
+
     .input-group textarea {
       resize: vertical;
       min-height: 150px;
     }
 
-    /* New gothic icon bar design for draw, image, and voice */
     .media-icons-container {
       margin-bottom: 2.5rem;
       padding: 2rem 0;
@@ -305,6 +467,7 @@
       width: 80%;
       height: 2px;
       background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+      transition: all 0.6s ease;
     }
 
     .media-icon {
@@ -414,6 +577,7 @@
       font-size: 0.9rem;
       color: var(--text-accent);
       letter-spacing: 1px;
+      transition: all 0.6s ease;
     }
 
     #fileInput {
@@ -456,6 +620,10 @@
       box-shadow: 0 0 20px var(--shadow-blue);
     }
 
+    body.theme-romantic .play-btn:hover {
+      color: var(--card-bg);
+    }
+
     .send-btn {
       background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-blue) 100%);
       color: white;
@@ -477,6 +645,10 @@
       position: relative;
       overflow: hidden;
       min-height: 60px;
+    }
+
+    body.theme-romantic .send-btn {
+      color: var(--card-bg);
     }
 
     .send-btn::before {
@@ -579,7 +751,8 @@
       position: relative;
       font-family: 'Cinzel', serif;
       letter-spacing: 2px;
-      background: linear-gradient(0deg, rgba(30, 58, 138, 0.1) 0%, transparent 100%);
+      background: linear-gradient(0deg, var(--shadow-blue) 0%, transparent 100%);
+      transition: all 0.6s ease;
     }
 
     .footer::before {
@@ -592,9 +765,17 @@
       padding: 0 1rem;
       color: var(--accent-blue);
       font-size: 1.2rem;
+      transition: all 0.6s ease;
     }
 
-    /* Drawing Modal Styles */
+    body.theme-romantic .footer::before {
+      content: '✦';
+    }
+
+    body.theme-dramatic .footer::before {
+      content: '✠';
+    }
+
     .draw-modal {
       display: none;
       position: fixed;
@@ -614,10 +795,11 @@
       border: 2px solid var(--border-color);
       padding: 2rem;
       width: 100%;
-      max-width: 600px;
+      max-width: 700px;
       max-height: 90vh;
       overflow-y: auto;
       box-shadow: 0 0 60px var(--shadow-blue);
+      transition: all 0.6s ease;
     }
 
     .draw-header {
@@ -635,6 +817,7 @@
       color: var(--text-accent);
       font-family: 'Cinzel', serif;
       letter-spacing: 2px;
+      transition: all 0.6s ease;
     }
 
     .close-draw {
@@ -653,23 +836,35 @@
       transform: rotate(90deg);
     }
 
+    /* Increased canvas size from 400px to 500px */
     .drawing-area {
       width: 100%;
-      height: 400px;
+      height: 500px;
       border: 2px solid var(--border-color);
       background-color: #1a1a1a;
       margin-bottom: 1.5rem;
       touch-action: none;
       box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.5);
       cursor: crosshair;
+      transition: all 0.6s ease;
     }
 
+    body.theme-romantic .drawing-area {
+      background-color: #f5f5f0;
+    }
+
+    body.theme-dramatic .drawing-area {
+      background-color: #0f1419;
+    }
+
+    /* Added color picker support */
     .color-toolbar {
       display: flex;
       gap: 1rem;
       margin-bottom: 1.5rem;
       justify-content: center;
       flex-wrap: wrap;
+      align-items: center;
     }
 
     .color-option {
@@ -692,6 +887,50 @@
       box-shadow: 0 0 20px var(--shadow-blue);
     }
 
+    /* Added custom color picker styling */
+    .color-picker-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .color-picker-btn {
+      width: 45px;
+      height: 45px;
+      border: 2px solid var(--border-color);
+      background: linear-gradient(135deg, 
+        red 0%, 
+        yellow 17%, 
+        lime 33%, 
+        cyan 50%, 
+        blue 67%, 
+        magenta 83%, 
+        red 100%);
+      cursor: pointer;
+      position: relative;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: white;
+      text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
+    }
+
+    .color-picker-btn:hover {
+      transform: scale(1.15);
+      box-shadow: 0 0 20px var(--shadow-blue);
+    }
+
+    #customColorPicker {
+      position: absolute;
+      opacity: 0;
+      width: 45px;
+      height: 45px;
+      cursor: pointer;
+    }
+
     .draw-actions {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -712,6 +951,14 @@
       min-height: 50px;
     }
 
+    body.theme-romantic .draw-actions button {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    body.theme-dramatic .draw-actions button {
+      background: rgba(17, 24, 39, 0.4);
+    }
+
     .draw-actions button:hover {
       background: rgba(30, 58, 138, 0.2);
       box-shadow: 0 0 20px var(--shadow-blue);
@@ -727,7 +974,10 @@
       border-color: var(--accent-blue) !important;
     }
 
-    /* Enhanced mobile responsiveness */
+    body.theme-romantic .submit-draw-btn {
+      color: var(--card-bg) !important;
+    }
+
     @media (max-width: 768px) {
       .container {
         border-left: none;
@@ -775,17 +1025,23 @@
         padding: 1.5rem;
       }
 
+      /* Adjusted mobile canvas size */
       .drawing-area {
-        height: 300px;
+        height: 400px;
       }
 
       .draw-actions {
         grid-template-columns: 1fr;
       }
 
-      .color-option {
+      .color-option, .color-picker-btn {
         width: 40px;
         height: 40px;
+      }
+
+      .theme-toggle {
+        width: 50px;
+        height: 50px;
       }
     }
 
@@ -831,9 +1087,12 @@
         font-size: 0.9rem;
         padding: 1rem 1.5rem;
       }
+
+      .drawing-area {
+        height: 350px;
+      }
     }
 
-    /* Better touch targets for mobile */
     @media (hover: none) and (pointer: coarse) {
       .media-icon {
         padding: 1.25rem;
@@ -843,7 +1102,7 @@
         font-size: 2.8rem;
       }
 
-      button, .media-icon, .color-option {
+      button, .media-icon, .color-option, .color-picker-btn {
         min-height: 44px;
         min-width: 44px;
       }
@@ -873,6 +1132,11 @@
     </div>
 
     <div class="contact-form">
+      <!-- Added theme switcher button -->
+      <div class="theme-switcher">
+        <button class="theme-toggle" id="themeToggle" aria-label="Switch Theme"></button>
+      </div>
+
       <h2 class="form-title">Get in Touch</h2>
       
       <div class="input-group">
@@ -886,7 +1150,6 @@
         <textarea id="messageInput" placeholder="Type your message here..."></textarea>
       </div>
 
-      <!-- New gothic icon bar for media attachments -->
       <div class="media-icons-container">
         <div class="media-icons-row">
           <div class="media-icon" id="drawIcon">
@@ -932,6 +1195,7 @@
         <button class="close-draw">&times;</button>
       </div>
       <canvas id="drawingCanvas" class="drawing-area"></canvas>
+      <!-- Added color picker button -->
       <div class="color-toolbar">
         <div class="color-option" data-color="#FFFFFF" style="background-color: #FFFFFF;"></div>
         <div class="color-option" data-color="#3b82f6" style="background-color: #3b82f6;"></div>
@@ -940,6 +1204,12 @@
         <div class="color-option" data-color="#FFFF00" style="background-color: #FFFF00;"></div>
         <div class="color-option" data-color="#FF69B4" style="background-color: #FF69B4;"></div>
         <div class="color-option" data-color="#26b139" style="background-color: #26b139;"></div>
+        <div class="color-picker-wrapper">
+          <div class="color-picker-btn">
+            <i class="fas fa-palette"></i>
+          </div>
+          <input type="color" id="customColorPicker" value="#FFFFFF">
+        </div>
       </div>
       <div class="draw-actions">
         <button id="undoButton" class="action-btn"><i class="fas fa-undo"></i> Undo</button>
@@ -993,6 +1263,11 @@
       document.getElementById('currentYear').textContent = new Date().getFullYear();
       updateClock();
       setInterval(updateClock, 1000);
+      
+      const savedTheme = localStorage.getItem('siteTheme') || 'default';
+      if (savedTheme !== 'default') {
+        document.body.className = savedTheme;
+      }
     });
 
     function updateClock() {
@@ -1063,6 +1338,24 @@
     const playButton = document.getElementById('playButton');
     const mediaStatus = document.getElementById('mediaStatus');
     const nameError = document.getElementById('nameError');
+
+    const themeToggle = document.getElementById('themeToggle');
+    const themes = ['default', 'theme-romantic', 'theme-dramatic'];
+    let currentThemeIndex = 0;
+
+    const savedTheme = localStorage.getItem('siteTheme') || 'default';
+    currentThemeIndex = themes.indexOf(savedTheme);
+    if (currentThemeIndex === -1) currentThemeIndex = 0;
+
+    themeToggle.addEventListener('click', function() {
+      currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+      const newTheme = themes[currentThemeIndex];
+      
+      document.body.className = newTheme === 'default' ? '' : newTheme;
+      localStorage.setItem('siteTheme', newTheme);
+      
+      showNotification(`Theme changed to ${newTheme === 'default' ? 'Classic Gothic' : newTheme === 'theme-romantic' ? 'Romantic Gothic' : 'Dark Dramatic'}`, 'success');
+    });
 
     voiceIcon.addEventListener('click', async () => {
       try {
@@ -1324,7 +1617,7 @@
       const width = drawingCanvas.offsetWidth;
       
       drawingCanvas.width = width;
-      drawingCanvas.height = 400;
+      drawingCanvas.height = 500;
       
       ctx.lineWidth = 3;
       ctx.lineCap = 'round';
@@ -1344,6 +1637,21 @@
           ctx.strokeStyle = currentColor;
         });
       });
+
+      const customColorPicker = document.getElementById('customColorPicker');
+      const colorPickerBtn = document.querySelector('.color-picker-btn');
+      
+      customColorPicker.addEventListener('change', function() {
+        currentColor = this.value;
+        ctx.strokeStyle = currentColor;
+        colorOptions.forEach(opt => opt.classList.remove('active'));
+        colorPickerBtn.style.background = currentColor;
+        showNotification(`Color changed to ${currentColor}`, 'success');
+      });
+
+      customColorPicker.addEventListener('input', function() {
+        colorPickerBtn.style.background = this.value;
+      });
     }
 
     function setupDrawingEvents() {
@@ -1356,27 +1664,40 @@
         e.preventDefault();
         const touch = e.touches[0];
         const rect = drawingCanvas.getBoundingClientRect();
-        const mouseEvent = new MouseEvent('mousedown', {
-          clientX: touch.clientX,
-          clientY: touch.clientY
-        });
-        drawingCanvas.dispatchEvent(mouseEvent);
+        const scaleX = drawingCanvas.width / rect.width;
+        const scaleY = drawingCanvas.height / rect.height;
+        
+        isDrawing = true;
+        const x = (touch.clientX - rect.left) * scaleX;
+        const y = (touch.clientY - rect.top) * scaleY;
+        
+        ctx.beginPath();
+        ctx.moveTo(x, y);
       }, { passive: false });
       
       drawingCanvas.addEventListener('touchmove', function(e) {
         e.preventDefault();
+        if (!isDrawing) return;
+        
         const touch = e.touches[0];
-        const mouseEvent = new MouseEvent('mousemove', {
-          clientX: touch.clientX,
-          clientY: touch.clientY
-        });
-        drawingCanvas.dispatchEvent(mouseEvent);
+        const rect = drawingCanvas.getBoundingClientRect();
+        const scaleX = drawingCanvas.width / rect.width;
+        const scaleY = drawingCanvas.height / rect.height;
+        
+        const x = (touch.clientX - rect.left) * scaleX;
+        const y = (touch.clientY - rect.top) * scaleY;
+        
+        ctx.lineTo(x, y);
+        ctx.stroke();
+        hasDrawing = true;
       }, { passive: false });
       
       drawingCanvas.addEventListener('touchend', function(e) {
         e.preventDefault();
-        const mouseEvent = new MouseEvent('mouseup');
-        drawingCanvas.dispatchEvent(mouseEvent);
+        if (isDrawing) {
+          isDrawing = false;
+          saveDrawingState();
+        }
       }, { passive: false });
       
       document.getElementById('drawIcon').addEventListener('click', openDrawModal);
@@ -1389,8 +1710,10 @@
     function startDrawing(e) {
       isDrawing = true;
       const rect = drawingCanvas.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
+      const scaleX = drawingCanvas.width / rect.width;
+      const scaleY = drawingCanvas.height / rect.height;
+      const x = (e.clientX - rect.left) * scaleX;
+      const y = (e.clientY - rect.top) * scaleY;
       
       ctx.beginPath();
       ctx.moveTo(x, y);
@@ -1400,8 +1723,10 @@
       if (!isDrawing) return;
       
       const rect = drawingCanvas.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
+      const scaleX = drawingCanvas.width / rect.width;
+      const scaleY = drawingCanvas.height / rect.height;
+      const x = (e.clientX - rect.left) * scaleX;
+      const y = (e.clientY - rect.top) * scaleY;
       
       ctx.lineTo(x, y);
       ctx.stroke();
