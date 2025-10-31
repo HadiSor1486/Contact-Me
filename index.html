@@ -852,10 +852,10 @@
     .canvas-container {
       position: relative;
       width: 100%;
-      height: 600px;
+      height: 700px;
       border: 1px solid var(--border-color);
       background-color: #ffffff;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
       overflow: hidden;
       box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.3);
       touch-action: none;
@@ -868,13 +868,13 @@
     }
 
     /* PREMIUM COLOR PICKER SYSTEM */
-    .color-toolbar {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-      margin-bottom: 2rem;
-      align-items: center;
-    }
+.color-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;  /* Reduced from 2rem */
+  margin-bottom: 0;  /* Removed margin */
+  align-items: center;
+}
 
     .color-section {
       width: 100%;
@@ -894,18 +894,17 @@
     }
 
     /* Selected Color Display */
-    .selected-color-display {
-      width: 100px;
-      height: 100px;
-      border: 2px solid var(--border-color);
-      box-shadow: 
-        0 0 30px var(--shadow-blue),
-        inset 0 0 20px rgba(0, 0, 0, 0.3);
-      position: relative;
-      transition: all 0.3s ease;
-      background-color: #000000;
-    }
-
+.selected-color-display {
+  width: 70px;  /* Reduced from 100px */
+  height: 70px;  /* Reduced from 100px */
+  border: 2px solid var(--border-color);
+  box-shadow: 
+    0 0 30px var(--shadow-blue),
+    inset 0 0 20px rgba(0, 0, 0, 0.3);
+  position: relative;
+  transition: all 0.3s ease;
+  background-color: #000000;
+}
     .selected-color-display:hover {
       transform: scale(1.05);
       box-shadow: 
@@ -923,27 +922,26 @@
       padding: 0 1rem;
     }
 
-    .gradient-bar {
-      width: 100%;
-      height: 60px;
-      border: 2px solid var(--border-color);
-      border-radius: 30px;
-      background: linear-gradient(to right, 
-        #ff0000 0%, 
-        #ffff00 16.67%, 
-        #00ff00 33.33%, 
-        #00ffff 50%, 
-        #0000ff 66.67%, 
-        #ff00ff 83.33%, 
-        #ff0000 100%);
-      position: relative;
-      cursor: pointer;
-      box-shadow: 
-        0 4px 20px rgba(0, 0, 0, 0.3),
-        inset 0 2px 10px rgba(255, 255, 255, 0.2);
-      overflow: hidden;
-    }
-
+.gradient-bar {
+  width: 100%;
+  height: 50px;  /* Reduced from 60px */
+  border: 2px solid var(--border-color);
+  border-radius: 25px;  /* Adjusted */
+  background: linear-gradient(to right, 
+    #ff0000 0%, 
+    #ffff00 16.67%, 
+    #00ff00 33.33%, 
+    #00ffff 50%, 
+    #0000ff 66.67%, 
+    #ff00ff 83.33%, 
+    #ff0000 100%);
+  position: relative;
+  cursor: pointer;
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.3),
+    inset 0 2px 10px rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+}
     .gradient-bar::before {
       content: '';
       position: absolute;
@@ -992,20 +990,19 @@
       border-radius: 4px;
     }
 
-    .saturation-lightness-box {
-      width: 100%;
-      height: 280px;
-      border: 2px solid var(--border-color);
-      position: relative;
-      cursor: crosshair;
-      box-shadow: 
-        0 4px 20px rgba(0, 0, 0, 0.3),
-        inset 0 2px 10px rgba(0, 0, 0, 0.2);
-      background: linear-gradient(to right, white, transparent),
-                  linear-gradient(to top, black, transparent);
-      background-color: #ff0000;
-    }
-
+.saturation-lightness-box {
+  width: 100%;
+  height: 220px;  /* Reduced from 280px */
+  border: 2px solid var(--border-color);
+  position: relative;
+  cursor: crosshair;
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.3),
+    inset 0 2px 10px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(to right, white, transparent),
+              linear-gradient(to top, black, transparent);
+  background-color: #ff0000;
+}
     .sl-box-overlay-white {
       position: absolute;
       top: 0;
@@ -1061,89 +1058,158 @@
     }
 
     /* Draw Actions */
-    .draw-actions {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.25rem;
-      margin-top: 2rem;
-    }
+ /* Compact Icon Buttons */
+.draw-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  padding: 0;
+}
 
-    .draw-actions button {
-      font-family: 'Cinzel', serif;
-      font-size: 1rem;
-      font-weight: 500;
-      letter-spacing: 2px;
-      padding: 1.25rem 2rem;
-      border: 1px solid var(--border-color);
-      background: linear-gradient(145deg, rgba(26, 26, 46, 0.8), rgba(15, 15, 30, 0.9));
-      color: var(--text-accent);
-      cursor: pointer;
-      transition: all 0.4s ease;
-      position: relative;
-      overflow: hidden;
-      text-transform: uppercase;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-    }
+.draw-actions button {
+  font-family: 'Cinzel', serif;
+  font-size: 1.2rem;
+  font-weight: 500;
+  padding: 0.75rem;
+  width: 50px;
+  height: 50px;
+  border: 1px solid var(--border-color);
+  background: linear-gradient(145deg, rgba(26, 26, 46, 0.8), rgba(15, 15, 30, 0.9));
+  color: var(--text-accent);
+  cursor: pointer;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-    .draw-actions button::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(100, 149, 237, 0.2), transparent);
-      transition: left 0.5s ease;
-    }
+.draw-actions button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(100, 149, 237, 0.2), transparent);
+  transition: left 0.5s ease;
+}
 
-    .draw-actions button:hover::before {
-      left: 100%;
-    }
+.draw-actions button:hover::before {
+  left: 100%;
+}
 
-    .draw-actions button:hover {
-      border-color: var(--accent-blue);
-      box-shadow: 0 0 30px var(--shadow-blue), inset 0 0 20px rgba(100, 149, 237, 0.15);
-      transform: translateY(-2px);
-      color: var(--light-blue);
-    }
+.draw-actions button:hover {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 30px var(--shadow-blue), inset 0 0 20px rgba(100, 149, 237, 0.15);
+  transform: translateY(-2px) scale(1.05);
+  color: var(--light-blue);
+}
 
-    .draw-actions button:active {
-      transform: translateY(0);
-      box-shadow: 0 0 20px var(--shadow-blue), inset 0 0 15px rgba(100, 149, 237, 0.2);
-    }
+.draw-actions button:active {
+  transform: translateY(0) scale(0.95);
+  box-shadow: 0 0 20px var(--shadow-blue), inset 0 0 15px rgba(100, 149, 237, 0.2);
+}
 
-    .draw-actions button#undoButton {
-      border-left: 2px solid rgba(100, 149, 237, 0.3);
-    }
+.draw-actions button#clearCanvas:hover {
+  border-color: crimson;
+  color: crimson;
+  box-shadow: 0 0 30px rgba(220, 20, 60, 0.4), inset 0 0 20px rgba(220, 20, 60, 0.15);
+}
 
-    .draw-actions button#clearCanvas {
-      border-left: 2px solid rgba(220, 20, 60, 0.3);
-      border-right: 2px solid rgba(220, 20, 60, 0.3);
-    }
+.draw-actions button#clearCanvas::before {
+  background: linear-gradient(90deg, transparent, rgba(220, 20, 60, 0.2), transparent);
+}
 
-    .draw-actions button#clearCanvas:hover {
-      border-color: crimson;
-      color: crimson;
-      box-shadow: 0 0 30px rgba(220, 20, 60, 0.4), inset 0 0 20px rgba(220, 20, 60, 0.15);
-    }
+.draw-actions button#submitDrawing {
+  background: linear-gradient(145deg, rgba(26, 26, 46, 0.9), rgba(100, 149, 237, 0.1));
+}
 
-    .draw-actions button#clearCanvas::before {
-      background: linear-gradient(90deg, transparent, rgba(220, 20, 60, 0.2), transparent);
-    }
+.draw-actions button#submitDrawing:hover {
+  background: linear-gradient(145deg, rgba(100, 149, 237, 0.15), rgba(26, 26, 46, 0.9));
+  box-shadow: 0 0 35px var(--shadow-blue), inset 0 0 25px rgba(100, 149, 237, 0.2);
+}
 
-    .draw-actions button#submitDrawing {
-      border-right: 2px solid rgba(100, 149, 237, 0.4);
-      background: linear-gradient(145deg, rgba(26, 26, 46, 0.9), rgba(100, 149, 237, 0.1));
-    }
+.draw-actions button i {
+  margin-right: 0;
+}
 
-    .draw-actions button#submitDrawing:hover {
-      background: linear-gradient(145deg, rgba(100, 149, 237, 0.15), rgba(26, 26, 46, 0.9));
-      box-shadow: 0 0 35px var(--shadow-blue), inset 0 0 25px rgba(100, 149, 237, 0.2);
-    }
+/* Color History Section */
+.color-history-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-color);
+}
 
-    .draw-actions button i {
-      margin-right: 0.75rem;
-    }
+.color-history-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  color: var(--text-accent);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.color-history-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  align-items: center;
+  max-width: 600px;
+}
+
+.color-history-item {
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--border-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  box-shadow: 0 0 15px var(--shadow-blue), inset 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.color-history-item:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 25px var(--shadow-blue), inset 0 0 10px rgba(0, 0, 0, 0.3);
+  border-color: var(--accent-blue);
+}
+
+.color-history-item.active {
+  border-color: var(--light-blue);
+  box-shadow: 0 0 30px var(--shadow-blue), 0 0 50px var(--shadow-blue), inset 0 0 10px rgba(0, 0, 0, 0.3);
+  transform: scale(1.2);
+}
+
+.color-history-item::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--shadow-blue), transparent);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.color-history-item.active::after {
+  width: 50px;
+  height: 50px;
+  opacity: 0.6;
+  animation: pulseGlow 1.8s ease-in-out infinite;
+}
 
     @media (max-width: 768px) {
       .container {
@@ -1193,7 +1259,7 @@
       }
 
       .canvas-container {
-        height: 500px;
+        height: 550px;
       }
 
       .draw-actions {
@@ -1275,7 +1341,7 @@
       }
 
       .canvas-container {
-        height: 400px;
+        height: 450px;
       }
 
       .selected-color-display {
@@ -1428,6 +1494,12 @@
         <canvas id="drawingCanvas" class="drawing-area"></canvas>
       </div>
       
+      <div class="draw-actions">
+  <button id="undoDrawing"><i class="fas fa-undo"></i></button>
+  <button id="clearCanvas"><i class="fas fa-trash"></i></button>
+  <button id="submitDrawing"><i class="fas fa-check"></i></button>
+</div>
+
       <!-- PREMIUM COLOR PICKER SYSTEM -->
       <div class="color-toolbar">
         <div class="color-section">
@@ -1448,16 +1520,18 @@
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="draw-actions">
-        <button id="undoButton"><i class="fas fa-undo"></i> Undo</button>
-        <button id="clearCanvas"><i class="fas fa-times"></i> Clear</button>
-        <button id="submitDrawing"><i class="fas fa-check"></i> Submit</button>
+        <!-- Color History -->
+        <div class="color-history-section">
+          <div class="color-history-label">Color History</div>
+          <div class="color-history-container" id="colorHistoryContainer">
+            <!-- Color history items will be added here dynamically -->
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  
+
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
     import { getStorage, ref, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-storage.js";
@@ -1861,16 +1935,28 @@
     let currentHue = 0;
     let drawHistory = [];
 
+    // Color History Management
+    let colorHistory = [];
+    const MAX_HISTORY = 12;
+
     // Color picker elements
-    const selectedColorDisplay = document.getElementById('selectedColorDisplay');
-    const gradientBar = document.getElementById('gradientBar');
-    const hueSlider = document.getElementById('hueSlider');
-    const slBox = document.getElementById('slBox');
-    const slPicker = document.getElementById('slPicker');
+    let selectedColorDisplay, gradientBar, hueSlider, slBox, slPicker;
 
     function initializeDrawing() {
       drawingCanvas = document.getElementById('drawingCanvas');
+      if (!drawingCanvas) {
+        console.error('Canvas element not found');
+        return;
+      }
+      
       ctx = drawingCanvas.getContext('2d');
+      
+      // Initialize color picker elements
+      selectedColorDisplay = document.getElementById('selectedColorDisplay');
+      gradientBar = document.getElementById('gradientBar');
+      hueSlider = document.getElementById('hueSlider');
+      slBox = document.getElementById('slBox');
+      slPicker = document.getElementById('slPicker');
       
       resizeCanvas();
       window.addEventListener('resize', resizeCanvas);
@@ -1878,6 +1964,19 @@
       setupDrawingEvents();
       setupColorSelection();
       saveDrawingState();
+      
+      // Initialize with default colors
+      initializeDefaultColors();
+    }
+
+    function initializeDefaultColors() {
+      // Add default colors to history
+      addToColorHistory({ h: 0, s: 0, l: 0 }); // Black
+      addToColorHistory({ h: 0, s: 0, l: 1 }); // White
+      addToColorHistory({ h: 0, s: 1, l: 0.5 }); // Red
+      addToColorHistory({ h: 120, s: 1, l: 0.5 }); // Green
+      addToColorHistory({ h: 240, s: 1, l: 0.5 }); // Blue
+      addToColorHistory({ h: 60, s: 1, l: 0.5 }); // Yellow
     }
 
     function resizeCanvas() {
@@ -1933,20 +2032,143 @@
       return rgbToHex(rgb.r, rgb.g, rgb.b);
     }
 
+    function hexToHSL(hex) {
+      hex = hex.replace('#', '');
+      
+      let r = parseInt(hex.substr(0, 2), 16) / 255;
+      let g = parseInt(hex.substr(2, 2), 16) / 255;
+      let b = parseInt(hex.substr(4, 2), 16) / 255;
+      
+      let max = Math.max(r, g, b);
+      let min = Math.min(r, g, b);
+      let h, s, l = (max + min) / 2;
+      
+      if (max === min) {
+        h = s = 0;
+      } else {
+        let d = max - min;
+        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+        
+        switch (max) {
+          case r: h = ((g - b) / d + (g < b ? 6 : 0)) / 6; break;
+          case g: h = ((b - r) / d + 2) / 6; break;
+          case b: h = ((r - g) / d + 4) / 6; break;
+        }
+      }
+      
+      return {
+        h: h * 360,
+        s: s,
+        l: l
+      };
+    }
+
     function updateStrokeStyle() {
       const hex = hslToHex(currentColor.h, currentColor.s, currentColor.l);
-      selectedColorDisplay.style.backgroundColor = hex;
-      ctx.strokeStyle = hex;
+      if (selectedColorDisplay) {
+        selectedColorDisplay.style.backgroundColor = hex;
+      }
+      if (ctx) {
+        ctx.strokeStyle = hex;
+      }
     }
 
     function updateColor() {
       updateStrokeStyle();
+      addToColorHistory(currentColor);
+    }
+
+    // ==================== COLOR HISTORY FUNCTIONS ====================
+    function addToColorHistory(color) {
+      const hex = hslToHex(color.h, color.s, color.l);
+      
+      // Don't add if it's already the most recent color
+      if (colorHistory.length > 0) {
+        const lastHex = hslToHex(colorHistory[0].h, colorHistory[0].s, colorHistory[0].l);
+        if (lastHex === hex) return;
+      }
+      
+      // Remove color if it already exists in history
+      colorHistory = colorHistory.filter(c => {
+        const existingHex = hslToHex(c.h, c.s, c.l);
+        return existingHex !== hex;
+      });
+      
+      // Add to beginning of array
+      colorHistory.unshift({ h: color.h, s: color.s, l: color.l });
+      
+      // Limit history size
+      if (colorHistory.length > MAX_HISTORY) {
+        colorHistory = colorHistory.slice(0, MAX_HISTORY);
+      }
+      
+      updateColorHistoryDisplay();
+    }
+
+    function updateColorHistoryDisplay() {
+      const container = document.getElementById('colorHistoryContainer');
+      if (!container) return;
+      
+      container.innerHTML = '';
+      
+      colorHistory.forEach((color, index) => {
+        const hex = hslToHex(color.h, color.s, color.l);
+        const item = document.createElement('div');
+        item.className = 'color-history-item';
+        item.style.backgroundColor = hex;
+        
+        // Mark current color as active
+        const currentHex = hslToHex(currentColor.h, currentColor.s, currentColor.l);
+        if (hex === currentHex) {
+          item.classList.add('active');
+        }
+        
+        item.addEventListener('click', () => {
+          selectColorFromHistory(color);
+        });
+        
+        container.appendChild(item);
+      });
+    }
+
+    function selectColorFromHistory(color) {
+      currentColor = { h: color.h, s: color.s, l: color.l };
+      currentHue = color.h;
+      
+      // Update selected color display
+      updateStrokeStyle();
+      
+      // Update hue slider position
+      const huePercentage = color.h / 360;
+      if (hueSlider) {
+        hueSlider.style.left = `${huePercentage * 100}%`;
+      }
+      
+      // Update SL box background color
+      if (slBox) {
+        slBox.style.backgroundColor = `hsl(${color.h}, 100%, 50%)`;
+      }
+      
+      // Update SL picker position
+      const saturationPercent = color.s * 100;
+      const lightnessPercent = (1 - color.l) * 100;
+      if (slPicker) {
+        slPicker.style.left = `${saturationPercent}%`;
+        slPicker.style.top = `${lightnessPercent}%`;
+      }
+      
+      // Update history display to show active color
+      updateColorHistoryDisplay();
     }
 
     // Hue slider
     let isDraggingHue = false;
-    gradientBar.addEventListener('mousedown', startHueDrag);
-    gradientBar.addEventListener('touchstart', startHueDrag);
+
+    function setupHueSlider() {
+      if (!gradientBar) return;
+      gradientBar.addEventListener('mousedown', startHueDrag);
+      gradientBar.addEventListener('touchstart', startHueDrag);
+    }
 
     function startHueDrag(e) {
       isDraggingHue = true;
@@ -1967,9 +2189,13 @@
       currentColor.h = percentage * 360;
       currentHue = currentColor.h;
       
-      hueSlider.style.left = `${percentage * 100}%`;
-      slBox.style.backgroundColor = `hsl(${currentColor.h}, 100%, 50%)`;
-      updateColor();
+      if (hueSlider) {
+        hueSlider.style.left = `${percentage * 100}%`;
+      }
+      if (slBox) {
+        slBox.style.backgroundColor = `hsl(${currentColor.h}, 100%, 50%)`;
+      }
+      updateStrokeStyle(); // ✅ Only updates the display, not history
     }
 
     function stopHueDrag() {
@@ -1982,8 +2208,12 @@
 
     // Saturation/Lightness picker
     let isDraggingSL = false;
-    slBox.addEventListener('mousedown', startSLDrag);
-    slBox.addEventListener('touchstart', startSLDrag);
+
+    function setupSLBox() {
+      if (!slBox) return;
+      slBox.addEventListener('mousedown', startSLDrag);
+      slBox.addEventListener('touchstart', startSLDrag);
+    }
 
     function startSLDrag(e) {
       isDraggingSL = true;
@@ -2007,9 +2237,11 @@
       currentColor.s = percentX;
       currentColor.l = 1 - percentY;
       
-      slPicker.style.left = `${percentX * 100}%`;
-      slPicker.style.top = `${percentY * 100}%`;
-      updateColor();
+      if (slPicker) {
+        slPicker.style.left = `${percentX * 100}%`;
+        slPicker.style.top = `${percentY * 100}%`;
+      }
+      updateStrokeStyle(); // ✅ Only updates the display, not history
     }
 
     function stopSLDrag() {
@@ -2023,10 +2255,18 @@
     function setupColorSelection() {
       // Initialize color to black
       currentColor = { h: 0, s: 0, l: 0 };
-      slPicker.style.left = '0%';
-      slPicker.style.top = '100%';
-      hueSlider.style.left = '0%';
+      if (slPicker) {
+        slPicker.style.left = '0%';
+        slPicker.style.top = '100%';
+      }
+      if (hueSlider) {
+        hueSlider.style.left = '0%';
+      }
       updateColor();
+      
+      // Setup event listeners
+      setupHueSlider();
+      setupSLBox();
     }
 
     function setupDrawingEvents() {
@@ -2050,6 +2290,7 @@
         
         ctx.beginPath();
         ctx.moveTo(x, y);
+        addToColorHistory(currentColor);
         saveDrawingState();
       }, { passive: false });
       
@@ -2078,11 +2319,18 @@
         }
       }, { passive: false });
       
-      document.getElementById('drawIcon').addEventListener('click', openDrawModal);
-      document.querySelector('.close-draw').addEventListener('click', closeDrawModal);
-      document.getElementById('clearCanvas').addEventListener('click', clearCanvasFunc);
-      document.getElementById('undoButton').addEventListener('click', undoLastAction);
-      document.getElementById('submitDrawing').addEventListener('click', submitDrawing);
+      // Button events
+      const drawIcon = document.getElementById('drawIcon');
+      const closeDrawBtn = document.querySelector('.close-draw');
+      const clearBtn = document.getElementById('clearCanvas');
+      const undoBtn = document.getElementById('undoDrawing');
+      const submitBtn = document.getElementById('submitDrawing');
+      
+      if (drawIcon) drawIcon.addEventListener('click', openDrawModal);
+      if (closeDrawBtn) closeDrawBtn.addEventListener('click', closeDrawModal);
+      if (clearBtn) clearBtn.addEventListener('click', clearCanvasFunc);
+      if (undoBtn) undoBtn.addEventListener('click', undoLastAction);
+      if (submitBtn) submitBtn.addEventListener('click', submitDrawing);
     }
 
     function startDrawing(e) {
@@ -2095,6 +2343,7 @@
       
       ctx.beginPath();
       ctx.moveTo(x, y);
+      addToColorHistory(currentColor);
       saveDrawingState();
     }
 
@@ -2126,24 +2375,26 @@
       drawHistory.push(drawingCanvas.toDataURL());
     }
 
-    function undoLastAction() {
-      if (drawHistory.length <= 1) {
-        clearCanvasFunc();
-        return;
-      }
-      
-      drawHistory.pop();
-      const previousState = drawHistory[drawHistory.length - 1];
-      
-      const img = new Image();
-      img.onload = function() {
-        ctx.clearRect(0, 0, drawingCanvas.width, drawingCanvas.height);
-        ctx.drawImage(img, 0, 0);
-      };
-      img.src = previousState;
-      
-      hasDrawing = drawHistory.length > 1;
-    }
+function undoLastAction() {
+  if (drawHistory.length > 0) {
+    const previousState = drawHistory.pop();
+    const img = new Image();
+    img.onload = function() {
+      ctx.clearRect(0, 0, drawingCanvas.width, drawingCanvas.height);
+      ctx.fillStyle = 'white';
+      ctx.fillRect(0, 0, drawingCanvas.width, drawingCanvas.height);
+      ctx.drawImage(img, 0, 0);
+    };
+    img.src = previousState;
+  }
+}
+
+function saveDrawingState() {
+  if (drawHistory.length >= 20) {
+    drawHistory.shift();
+  }
+  drawHistory.push(drawingCanvas.toDataURL());
+}
 
     function clearCanvasFunc() {
       ctx.fillStyle = 'white';
@@ -2156,49 +2407,57 @@
 
     function openDrawModal() {
       const modal = document.getElementById('drawModal');
-      modal.style.display = 'flex';
-      resizeCanvas();
+      if (modal) {
+        modal.style.display = 'flex';
+        resizeCanvas();
+        // Refresh color history display when opening
+        updateColorHistoryDisplay();
+      }
     }
 
     function closeDrawModal() {
       const modal = document.getElementById('drawModal');
-      modal.style.display = 'none';
+      if (modal) {
+        modal.style.display = 'none';
+      }
     }
 
+    // <CHANGE> Fixed submitDrawing function to properly convert canvas to blob
     function submitDrawing() {
       if (!hasDrawing) {
-        showNotification('Please draw something before submitting', 'error');
+        showNotification('Please draw something first!', 'error');
         return;
       }
       
-      getDrawingBlob().then(blob => {
-        window.currentDrawingBlob = blob;
-        closeDrawModal();
-        const drawIcon = document.getElementById('drawIcon');
-        drawIcon.classList.add('active');
-        mediaStatus.textContent = 'Drawing added';
-        showNotification('Drawing added successfully!', 'success');
-      });
-    }
-
-    function getDrawingBlob() {
-      return new Promise((resolve) => {
-        if (!hasDrawing || !drawingCanvas) {
-          resolve(null);
-          return;
+      // Convert canvas to blob and store it
+      drawingCanvas.toBlob(blob => {
+        if (blob) {
+          window.currentDrawingBlob = blob;
+          
+          const mediaStatus = document.getElementById('mediaStatus');
+          if (mediaStatus) {
+            mediaStatus.textContent = 'Drawing attached ✓';
+          }
+          
+          const drawIcon = document.getElementById('drawIcon');
+          if (drawIcon) {
+            drawIcon.classList.add('active');
+          }
+          
+          showNotification('Drawing saved successfully!', 'success');
+          closeDrawModal();
+        } else {
+          showNotification('Failed to save drawing. Please try again.', 'error');
         }
-        
-        drawingCanvas.toBlob(blob => {
-          resolve(blob);
-        }, 'image/png', 0.95);
-      });
+      }, 'image/png', 0.95);
     }
 
-    window.addEventListener('DOMContentLoaded', function() {
+    // Initialize when page loads
+    document.addEventListener('DOMContentLoaded', function() {
       initializeDrawing();
     });
 
     window.sendMessage = sendMessage;
   </script>
 </body>
-</html>
+</html> 
