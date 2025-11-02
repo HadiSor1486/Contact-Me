@@ -1435,6 +1435,190 @@
         min-width: 44px;
       }
     }
+    
+    /* EMAIL MODAL STYLES */
+/* EMAIL BUTTON - Small inline button */
+.email-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: none;
+  border: 1px solid var(--border-color);
+  color: var(--text-accent);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Cinzel', serif;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border-radius: 0;
+  margin: 0 auto 2.5rem auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.email-btn:hover {
+  border-color: var(--accent-blue);
+  color: var(--accent-blue);
+  box-shadow: 0 0 15px var(--shadow-blue);
+}
+
+.email-btn i {
+  font-size: 1rem;
+}
+
+/* EMAIL MODAL */
+.email-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  animation: fadeInModal 0.4s ease;
+}
+
+@keyframes fadeInModal {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.email-modal.active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.email-modal-content {
+  background: linear-gradient(135deg, var(--card-bg) 0%, rgba(26, 26, 46, 0.9) 100%);
+  border: 2px solid var(--accent-blue);
+  box-shadow: 0 0 50px var(--shadow-blue), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  padding: 2.5rem;
+  max-width: 450px;
+  width: 90%;
+  position: relative;
+  animation: slideInModal 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+@keyframes slideInModal {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.email-modal-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.email-modal-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.75rem;
+  color: var(--text-accent);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.email-modal-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  color: var(--text-accent);
+  font-size: 2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.email-modal-close:hover {
+  color: var(--accent-blue);
+  transform: rotate(90deg);
+}
+
+.email-form-group {
+  margin-bottom: 1.5rem;
+}
+
+.email-form-group label {
+  display: block;
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--text-accent);
+  font-family: 'Cinzel', serif;
+  letter-spacing: 1.5px;
+}
+
+.email-form-group input,
+.email-form-group textarea {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0;
+  background: rgba(30, 58, 138, 0.03);
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-family: 'Cormorant Garamond', serif;
+  transition: all 0.3s ease;
+}
+
+.email-form-group input:focus,
+.email-form-group textarea:focus {
+  outline: none;
+  border-color: var(--accent-blue);
+  background: rgba(30, 58, 138, 0.08);
+  box-shadow: 0 0 15px var(--shadow-blue);
+}
+
+.email-form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.email-send-btn {
+  background: linear-gradient(135deg, var(--primary-blue) 0%, var(--accent-blue) 100%);
+  color: white;
+  border: 1px solid var(--accent-blue);
+  border-radius: 0;
+  padding: 1rem 2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  width: 100%;
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.email-send-btn:hover {
+  box-shadow: 0 0 25px var(--shadow-blue);
+  transform: translateY(-2px);
+}
+
+.email-send-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+}
   </style>
 </head>
 <body>
@@ -1514,6 +1698,46 @@
           <i class="fas fa-play"></i> Play Recording
         </button>
       </div>
+      
+<!-- EMAIL BUTTON - Small button before send message -->
+<button onclick="openEmailModal()" class="email-btn">
+  <i class="fas fa-envelope"></i>
+  <span>Email Me</span>
+</button>
+
+<!-- EMAIL MODAL -->
+<div id="emailModal" class="email-modal">
+  <div class="email-modal-content">
+    <div class="email-modal-header">
+      <h3 class="email-modal-title">Send via Email</h3>
+      <button type="button" onclick="closeEmailModal()" class="email-modal-close">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+
+    <form id="emailForm" onsubmit="handleEmailSubmit(event)">
+      <div class="email-form-group">
+        <label for="userEmail">Your Email</label>
+        <input type="email" id="userEmail" placeholder="your.email@example.com" required>
+      </div>
+
+      <div class="email-form-group">
+        <label for="emailSubject">Subject</label>
+        <input type="text" id="emailSubject" placeholder="Message subject" required>
+      </div>
+
+      <div class="email-form-group">
+        <label for="emailMessage">Message</label>
+        <textarea id="emailMessage" placeholder="Your message..." required></textarea>
+      </div>
+
+      <button type="submit" class="email-send-btn">
+  <i class="fas fa-envelope-circle-check"></i>  <!-- <CHANGE> Changed from paper-plane to envelope-circle-check for email feel -->
+  <span>Send</span>
+</button>
+    </form>
+  </div>
+</div>
       
       <button onclick="sendMessage()" class="send-btn">
         <i class="fas fa-paper-plane"></i>
@@ -2537,6 +2761,72 @@ function saveDrawingState() {
       initializeDrawing();
     });
 
+// EMAIL MODAL FUNCTIONS
+function openEmailModal() {
+  const modal = document.getElementById('emailModal');
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeEmailModal() {
+  const modal = document.getElementById('emailModal');
+  modal.classList.remove('active');
+  document.body.style.overflow = 'auto';
+  document.getElementById('emailForm').reset();
+}
+
+// Close modal when clicking outside
+document.addEventListener('DOMContentLoaded', function() {
+  const modal = document.getElementById('emailModal');
+  if (modal) {
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) {
+        closeEmailModal();
+      }
+    });
+
+    // Close with Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeEmailModal();
+      }
+    });
+  }
+});
+
+async function handleEmailSubmit(event) {
+  event.preventDefault();
+
+  const userEmail = document.getElementById('userEmail').value;
+  const subject = document.getElementById('emailSubject').value;
+  const emailMessage = document.getElementById('emailMessage').value;
+  const submitBtn = event.target.querySelector('.email-send-btn');
+
+  if (!userEmail || !subject || !emailMessage) {
+    showNotification('Please fill in all fields', 'error');
+    return;
+  }
+
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = '<span>Sending...</span>';
+
+  try {
+    // Build message with email info
+    const fullMessage = `📧 EMAIL SUBMISSION\n\nFrom: ${userEmail}\nSubject: ${subject}\n\nMessage:\n${emailMessage}`;
+
+    // Send to Telegram using the existing function
+    await sendTextWithPromise(fullMessage);
+    
+    showNotification('Message sent successfully!', 'success');
+    closeEmailModal();
+  } catch (error) {
+    console.error('Error:', error);
+    showNotification('Error sending message. Please try again.', 'error');
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i><span>Send</span>';
+  }
+}
     window.sendMessage = sendMessage;
   </script>
 </body>
