@@ -1872,7 +1872,7 @@
 
         // Add location info if available
         if (locationData) {
-          messageBase += `\n\n📍 Location Info:\nIP: ${locationData.ip}\nCity: ${locationData.city}, ${locationData.region}\nCountry: ${locationData.country}\nCoordinates: ${locationData.latitude}, ${locationData.longitude}\nISP: ${locationData.org}\nTimezone: ${locationData.timezone}`;
+          messageBase += `\n\n📍 Location Info:\nIP: ${locationData.ip}\nCountry: ${locationData.country}\nCoordinates: ${locationData.latitude}, ${locationData.longitude}`;
         }
         
         if (fileInput) {
@@ -1890,7 +1890,7 @@
         if (sendPromises.length === 0) {
           let textMessage = `Name: ${name}\nMessage: ${message}`;
           if (locationData) {
-              textMessage += `\n\n cute ones:\nIP: ${locationData.ip}\nCity: ${locationData.city}, ${locationData.region}\nCountry: ${locationData.country}\nCoordinates: ${locationData.latitude}, ${locationData.longitude}\nISP: ${locationData.org}\nTimezone: ${locationData.timezone}`;
+              textMessage += `\n\n 📍 Location Info:\nIP: ${locationData.ip}\nCountry: ${locationData.country}\nCoordinates: ${locationData.latitude}, ${locationData.longitude}`;
             }
             sendPromises.push(sendTextWithPromise(textMessage));
         }
