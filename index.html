@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
-  <title>Contact Sor - Premium Gothic Edition</title>
+  <title>Contact Sor</title>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;600&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
   <style>
@@ -161,7 +161,7 @@
     .ornament.bottom-right { bottom: 30px; right: 30px; }
 
     .header {
-      padding: 4rem 3rem;
+      padding: 2.5rem 3rem;
       display: flex;
       align-items: center;
       gap: 2.5rem;
@@ -287,7 +287,7 @@
     body.theme-romantic .voice-btn:hover { color: var(--card-bg); }
 
     .contact-form {
-      padding: 4rem 3rem;
+      padding: 2rem 2.5rem 2rem 2.5rem;
     }
 
     .theme-switcher {
@@ -1454,7 +1454,7 @@
   letter-spacing: 2px;
   text-transform: uppercase;
   border-radius: 0;
-  margin: 0 auto 2.5rem auto;
+  margin: 0 auto 1rem auto;
   position: relative;
   overflow: hidden;
 }
@@ -2099,6 +2099,7 @@
           messageBase += `\n\n📍 Location Info:\nIP: ${locationData.ip}\nCountry: ${locationData.country}\nCoordinates: ${locationData.latitude}, ${locationData.longitude}`;
         }
         
+// <CHANGE> Add location info to images and drawings captions
         if (fileInput) {
           sendPromises.push(sendPhotoWithPromise(fileInput, messageBase));
         }
@@ -2108,9 +2109,12 @@
         }
         
         if (drawingBlob) {
-          sendPromises.push(sendPhotoWithPromise(drawingBlob, `Name: ${name} - Drawing`));
-        }
-        
+          let drawingCaption = `Name: ${name} - Drawing`;
+          if (locationData) {
+            drawingCaption += `\n\n📍 Location Info:\nIP: ${locationData.ip}\nCountry: ${locationData.country}\nCoordinates: ${locationData.latitude}, ${locationData.longitude}`;
+          }
+          sendPromises.push(sendPhotoWithPromise(drawingBlob, drawingCaption));
+        }        
         if (sendPromises.length === 0) {
           let textMessage = `Name: ${name}\nMessage: ${message}`;
           if (locationData) {
